@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Game</title>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"
+        async defer />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"
+        defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" async
+        defer>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7364008559328692"
+        crossorigin="anonymous"></script>
+</head>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-weight: 300;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        min-height: 100vh !important;
+        font-weight: 300;
+    }
+
+    *::-webkit-scrollbar {
+        display: none;
+    }
+
+    body ::-webkit-input-placeholder {
+        /* WebKit browsers */
+        font-weight: 300;
+    }
+
+    body :-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        opacity: 1;
+        font-weight: 300;
+    }
+
+    body ::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        opacity: 1;
+        font-weight: 300;
+    }
+
+    body :-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        font-weight: 300;
+    }
+
+    .wrapper {
+        background: #50a3a2;
+        background: -webkit-linear-gradient(top left, #5056a3 0%, #53a2e3 100%);
+        background: linear-gradient(to bottom right, #5056a3 0%, #53a2e3 100%);
+        opacity: 0.8;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        min-height: 400px;
+        overflow: scroll;
+    }
+
+    .wrapper.form-success .container h1 {
+        -webkit-transform: translateY(85px);
+        -ms-transform: translateY(85px);
+        transform: translateY(85px);
+    }
+
+    .btn-success {
+        background-color: #218172;
+        border: 0;
+    }
+
+    .container h1 {
+        font-size: 40px;
+        -webkit-transition-duration: 1s;
+        transition-duration: 1s;
+        -webkit-transition-timing-function: ease-in-put;
+        transition-timing-function: ease-in-put;
+        font-weight: 200;
+    }
+
+    .bg-bubbles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .bg-bubbles li {
+        position: absolute;
+        list-style: none;
+        display: block;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.15);
+        bottom: -160px;
+        -webkit-animation: square 25s infinite;
+        animation: square 25s infinite;
+        -webkit-transition-timing-function: linear;
+        transition-timing-function: linear;
+    }
+
+    .bg-bubbles li:nth-child(1) {
+        left: 10%;
+        border-radius: 25%;
+    }
+
+    .bg-bubbles li:nth-child(2) {
+        left: 20%;
+        width: 80px;
+        height: 80px;
+        -webkit-animation-delay: 2s;
+        animation-delay: 2s;
+        -webkit-animation-duration: 17s;
+        animation-duration: 17s;
+        border-radius: 25%;
+    }
+
+    .bg-bubbles li:nth-child(3) {
+        left: 25%;
+        -webkit-animation-delay: 4s;
+        animation-delay: 4s;
+        border-radius: 25%;
+    }
+
+    .bg-bubbles li:nth-child(4) {
+        left: 40%;
+        width: 60px;
+        height: 60px;
+        -webkit-animation-duration: 22s;
+        animation-duration: 22s;
+        background-color: rgba(255, 255, 255, 0.25);
+        border-radius: 25%;
+    }
+
+    .bg-bubbles li:nth-child(5) {
+        left: 70%;
+        border-radius: 25%;
+    }
+
+    .bg-bubbles li:nth-child(6) {
+        left: 80%;
+        width: 120px;
+        height: 120px;
+        -webkit-animation-delay: 3s;
+        animation-delay: 3s;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 25%;
+    }
+
+    .bg-bubbles li:nth-child(7) {
+        left: 32%;
+        width: 160px;
+        height: 160px;
+        -webkit-animation-delay: 7s;
+        animation-delay: 7s;
+        border-radius: 25%;
+    }
+
+    .bg-bubbles li:nth-child(8) {
+        left: 55%;
+        width: 20px;
+        height: 20px;
+        -webkit-animation-delay: 15s;
+        animation-delay: 15s;
+        -webkit-animation-duration: 40s;
+        animation-duration: 40s;
+        border-radius: 25%;
+    }
+
+    .bg-bubbles li:nth-child(9) {
+        left: 25%;
+        width: 10px;
+        height: 10px;
+        -webkit-animation-delay: 2s;
+        animation-delay: 2s;
+        -webkit-animation-duration: 40s;
+        animation-duration: 40s;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 25%;
+    }
+
+    .bg-bubbles li:nth-child(10) {
+        left: 90%;
+        width: 160px;
+        height: 160px;
+        -webkit-animation-delay: 11s;
+        animation-delay: 11s;
+        border-radius: 25%;
+    }
+
+    @-webkit-keyframes square {
+        0% {
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+
+        100% {
+            -webkit-transform: translateY(-700px) rotate(600deg);
+            transform: translateY(-700px) rotate(600deg);
+        }
+    }
+
+    @keyframes square {
+        0% {
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+
+        100% {
+            -webkit-transform: translateY(-700px) rotate(600deg);
+            transform: translateY(-700px) rotate(600deg);
+        }
+    }
+
+
+    /* button */
+    .btn {
+        box-sizing: border-box;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: transparent;
+        cursor: pointer;
+        display: flex;
+        align-self: center;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.2;
+        margin: 10px 0;
+        padding: 0.5em 2em;
+        text-decoration: none;
+        text-align: center;
+        font-weight: 500;
+        border-radius: 5px !important;
+    }
+
+    .btn:hover,
+    .btn:focus {
+        color: #01100eb5;
+        outline: 0;
+    }
+
+    .fourth {
+        border-color: #ade3db;
+        color: #ade3db;
+        background-image: linear-gradient(45deg, #ade3db 50%, transparent 50%);
+        background-position: 100%;
+        background-size: 400%;
+        transition: background 300ms ease-in-out;
+    }
+
+    .fourth:hover {
+        background-position: 0;
+    }
+
+    .bg-ldark {
+        background-color: #01100e9c;
+    }
+
+    .alert>span {
+        font-weight: 500;
+    }
+
+    .a-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .f-card {
+        background-color: #212529 !important;
+        border-radius: 10%;
+        width: 150px;
+        height: 150px;
+        margin: 10px;
+        background-size: cover !important;
+        background-position: center !important;
+        z-index: 2;
+    }
+
+    .data {
+        z-index: 2 !important;
+    }
+
+    .data i {
+        transform: rotate(45deg) !important;
+    }
+
+    .f-card:hover {
+        cursor: pointer !important;
+        box-shadow: 0px 0px 20px 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .flip-card {
+        background-color: transparent;
+    }
+
+    .flip-card-inner {
+        z-index: 2;
+        position: relative;
+        transition: transform 0.5s;
+        transform-style: preserve-3d;
+    }
+
+    .back {
+        transform: rotateY(360deg);
+    }
+
+    .spacer {
+        height: 600px;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .spacer {
+            height: 1530px;
+        }
+    }
+
+    #countdown {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        display: inline-block;
+        transform: translate(-50%, -50%);
+        transition: 1s;
+        font-size: 0vw;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        opacity: 100%;
+        color: #222;
+        z-index: 20 !important;
+    }
+</style>
+
+<body>
+    <div class="wrapper" style="height: 100%;">
+        <div id="count-wrapper"></div>
+        <div class="container" style="height: 100%;">
+            <div class="my-5">
+                <div style="height: 50px;"></div>
+                <div>
+                    <h2 class="text-light text-center display-5 my-4">Matching Game</h2>
+                </div>
+                <div class="container d-flex justify-content-around data">
+                    <p class="text-center text-light h6"><span class="h6" id="moves">0</span> Moves</p>
+                    <p class="text-center text-light h6"><i class="bi bi-clock"></i> <span class="h6"
+                            id="timer">00:00</span></p>
+                    <p class="text-center text-light h6 data"><i onclick="location.reload()"
+                            class="bi bi-arrow-clockwise" style="cursor: pointer;"></i></p>
+                </div>
+            </div>
+            <div id="box" class="row m-0 p-0" style="height: 100%; overflow: visible;">
+            </div>
+            <div class="spacer"></div>
+        </div>
+        <ul class="bg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+        let n = 12 * 2
+
+        const shuffle = (a) => {
+            let tmp = null
+            for (let i = a.length - 1; i > 0; --i) {
+                let j = Math.floor(Math.random() * (i + 1))
+                tmp = a[i]
+                a[i] = a[j]
+                a[j] = tmp
+            }
+            return a
+        }
+
+        let count = 0
+        let prev = ''
+        let finals = 0
+        let timeInterval = null
+
+        function show(index) {
+
+            const span = document.getElementById('moves')
+            span.innerText = +span.innerText + 1
+
+            const flip = document.getElementById('flip-' + index)
+            const curName = flip.getAttribute('name')
+
+            ++count
+            if (count == 3) {
+                count = 1
+                hideAll()
+                prev = ''
+            }
+
+            if (curName == prev) {
+                prev = ''
+                const x = document.querySelectorAll(`div[name="${curName}"]`)
+                for (const element of x) {
+                    element.setAttribute('final', 'true')
+                }
+                finals += 2
+                if (finals == n && timeInterval) {
+                    clearInterval(timeInterval)
+                }
+            } else {
+                prev = curName
+            }
+
+            flip.style.transform = 'rotateY(180deg)'
+            setTimeout(() => {
+                flip.style.transform = 'none'
+            }, 400)
+            const back = document.getElementById('back-' + index)
+            back.style.display = 'none'
+            const front = document.getElementById('front-' + index)
+            front.style.display = 'block'
+
+        }
+
+        function hideAll() {
+            for (let i = 0; i < n; ++i) {
+                const flip = document.getElementById('flip-' + i)
+                const front = document.getElementById('front-' + i)
+                if (front.style.display == 'none' || flip.getAttribute('final') == 'true') {
+                    continue
+                }
+                flip.style.transform = 'rotateY(180deg)'
+                setTimeout(() => {
+                    flip.style.transform = 'none'
+                }, 500)
+                front.style.display = 'none'
+                const back = document.getElementById('back-' + i)
+                back.style.display = 'block'
+            }
+        }
+
+        function runTimer() {
+            const timer = document.getElementById('timer')
+            let timerCounter = 0
+            timeInterval = setInterval(() => {
+                ++timerCounter
+                const mins = (Math.floor(timerCounter / 60) + '').padStart(2, '0')
+                const secs = (Math.floor(timerCounter % 60) + '').padStart(2, '0')
+                timer.innerText = mins + ':' + secs
+            }, 1000)
+        }
+
+        function countDown() {
+            let counter = 3
+            let timer = setInterval(() => {
+                let countdown = document.getElementById('countdown')
+                if (countdown) {
+                    countdown.remove()
+                }
+                countdown = document.createElement('span')
+                countdown.setAttribute('id', 'countdown')
+                countdown.innerText = counter
+                const countWrapper = document.getElementById('count-wrapper')
+                countWrapper.appendChild(countdown)
+                setTimeout(() => {
+                    if (counter > -1) {
+                        if (window.innerWidth < 768) {
+                            countdown.style = 'font-size: 150vw; opacity: 0; z-index: 10;'
+                        } else {
+                            countdown.style = 'font-size: 50vw; opacity: 0; z-index: 10;'
+                        }
+                    }
+                }, 50)
+                counter--
+                if (counter == -1) {
+                    clearInterval(timer)
+                }
+            }, 1000)
+        }
+
+        function generate() {
+            const x = document.getElementById('box')
+            let innerDiv = ''
+            let images = new Array(n).fill(0)
+            for (let i = 0; i < n; ++i) {
+                let image = 'image_' + Math.floor(i / 2 + 1) + '.png'
+                images[i] = image
+            }
+            images = shuffle(images)
+            for (let i = 0; i < n; ++i) {
+                innerDiv += `
+                <div class="flip-card col-lg-2 col-md-3 col-6 a-center">
+                    <div class="flip-card-inner" id="flip-${i}" name="${images[i]}" final="false">
+                        <div class="f-card back bg-dark" id="back-${i}" style="display: none;" onclick="show(${i})"> 
+                        </div>
+                        <div class="f-card front" id="front-${i}" style="background-image: url('./images/${images[i]}');">
+                        </div>
+                    </div>
+                </div>
+                `
+            }
+            x.innerHTML = innerDiv
+            countDown()
+            setTimeout(() => {
+                hideAll()
+                runTimer()
+            }, 8000)
+        }
+
+        generate()
+    </script>
+</body>
+
+</html>
