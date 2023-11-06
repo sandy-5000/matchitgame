@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matchit Game</title>
-
+    
     <meta name="description"
         content="Enjoy a fun and challenging 2-tile matching game! Test your memory and concentration as you match pairs of tiles to win the game.">
     <meta name="keywords"
@@ -17,400 +17,45 @@
         content="Enjoy a fun and challenging 2-tile matching game! Test your memory and concentration as you match pairs of tiles to win the game.">
     <meta name="og:url" content="https://matchitgame.netlify.app">
     <meta name="og:type" content="website">
+    
     <link rel="canonical" href="https://matchitgame.netlify.app">
-
-    <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"
-        async defer />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"
-        defer></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" async
-        defer>
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7364008559328692"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./main.js"></script>
 </head>
 
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-weight: 300;
-        scroll-behavior: smooth;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;
-    }
-
-    body {
-        min-height: 100vh !important;
-        font-weight: 300;
-    }
-
-    *::-webkit-scrollbar {
-        display: none;
-    }
-
-    body ::-webkit-input-placeholder {
-        /* WebKit browsers */
-        font-weight: 300;
-    }
-
-    body :-moz-placeholder {
-        /* Mozilla Firefox 4 to 18 */
-        opacity: 1;
-        font-weight: 300;
-    }
-
-    body ::-moz-placeholder {
-        /* Mozilla Firefox 19+ */
-        opacity: 1;
-        font-weight: 300;
-    }
-
-    body :-ms-input-placeholder {
-        /* Internet Explorer 10+ */
-        font-weight: 300;
-    }
-
-    .wrapper {
-        background: #50a3a2;
-        background: -webkit-linear-gradient(top left, #5056a3 0%, #53a2e3 100%);
-        background: linear-gradient(to bottom right, #5056a3 0%, #53a2e3 100%);
-        opacity: 0.8;
-        position: absolute;
-        left: 0;
-        width: 100%;
-        min-height: 400px;
-        overflow: scroll;
-    }
-
-    .wrapper.form-success .container h1 {
-        -webkit-transform: translateY(85px);
-        -ms-transform: translateY(85px);
-        transform: translateY(85px);
-    }
-
-    .btn-success {
-        background-color: #218172;
-        border: 0;
-    }
-
-    .container h1 {
-        font-size: 40px;
-        -webkit-transition-duration: 1s;
-        transition-duration: 1s;
-        -webkit-transition-timing-function: ease-in-put;
-        transition-timing-function: ease-in-put;
-        font-weight: 200;
-    }
-
-    .bg-bubbles {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-    }
-
-    .bg-bubbles li {
-        position: absolute;
-        list-style: none;
-        display: block;
-        width: 40px;
-        height: 40px;
-        background-color: rgba(255, 255, 255, 0.15);
-        bottom: -160px;
-        -webkit-animation: square 25s infinite;
-        animation: square 25s infinite;
-        -webkit-transition-timing-function: linear;
-        transition-timing-function: linear;
-    }
-
-    .bg-bubbles li:nth-child(1) {
-        left: 10%;
-        border-radius: 25%;
-    }
-
-    .bg-bubbles li:nth-child(2) {
-        left: 20%;
-        width: 80px;
-        height: 80px;
-        -webkit-animation-delay: 2s;
-        animation-delay: 2s;
-        -webkit-animation-duration: 17s;
-        animation-duration: 17s;
-        border-radius: 25%;
-    }
-
-    .bg-bubbles li:nth-child(3) {
-        left: 25%;
-        -webkit-animation-delay: 4s;
-        animation-delay: 4s;
-        border-radius: 25%;
-    }
-
-    .bg-bubbles li:nth-child(4) {
-        left: 40%;
-        width: 60px;
-        height: 60px;
-        -webkit-animation-duration: 22s;
-        animation-duration: 22s;
-        background-color: rgba(255, 255, 255, 0.25);
-        border-radius: 25%;
-    }
-
-    .bg-bubbles li:nth-child(5) {
-        left: 70%;
-        border-radius: 25%;
-    }
-
-    .bg-bubbles li:nth-child(6) {
-        left: 80%;
-        width: 120px;
-        height: 120px;
-        -webkit-animation-delay: 3s;
-        animation-delay: 3s;
-        background-color: rgba(255, 255, 255, 0.2);
-        border-radius: 25%;
-    }
-
-    .bg-bubbles li:nth-child(7) {
-        left: 32%;
-        width: 160px;
-        height: 160px;
-        -webkit-animation-delay: 7s;
-        animation-delay: 7s;
-        border-radius: 25%;
-    }
-
-    .bg-bubbles li:nth-child(8) {
-        left: 55%;
-        width: 20px;
-        height: 20px;
-        -webkit-animation-delay: 15s;
-        animation-delay: 15s;
-        -webkit-animation-duration: 40s;
-        animation-duration: 40s;
-        border-radius: 25%;
-    }
-
-    .bg-bubbles li:nth-child(9) {
-        left: 25%;
-        width: 10px;
-        height: 10px;
-        -webkit-animation-delay: 2s;
-        animation-delay: 2s;
-        -webkit-animation-duration: 40s;
-        animation-duration: 40s;
-        background-color: rgba(255, 255, 255, 0.3);
-        border-radius: 25%;
-    }
-
-    .bg-bubbles li:nth-child(10) {
-        left: 90%;
-        width: 160px;
-        height: 160px;
-        -webkit-animation-delay: 11s;
-        animation-delay: 11s;
-        border-radius: 25%;
-    }
-
-    @-webkit-keyframes square {
-        0% {
-            -webkit-transform: translateY(0);
-            transform: translateY(0);
-        }
-
-        100% {
-            -webkit-transform: translateY(-700px) rotate(600deg);
-            transform: translateY(-700px) rotate(600deg);
-        }
-    }
-
-    @keyframes square {
-        0% {
-            -webkit-transform: translateY(0);
-            transform: translateY(0);
-        }
-
-        100% {
-            -webkit-transform: translateY(-700px) rotate(600deg);
-            transform: translateY(-700px) rotate(600deg);
-        }
-    }
-
-
-    /* button */
-    .btn {
-        box-sizing: border-box;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-color: transparent;
-        cursor: pointer;
-        display: flex;
-        align-self: center;
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.2;
-        margin: 10px 0;
-        padding: 0.5em 2em;
-        text-decoration: none;
-        text-align: center;
-        font-weight: 500;
-        border-radius: 5px !important;
-    }
-
-    .btn:hover,
-    .btn:focus {
-        color: #01100eb5;
-        outline: 0;
-    }
-
-    .fourth {
-        border-color: #ade3db;
-        color: #ade3db;
-        background-image: linear-gradient(45deg, #ade3db 50%, transparent 50%);
-        background-position: 100%;
-        background-size: 400%;
-        transition: background 300ms ease-in-out;
-    }
-
-    .fourth:hover {
-        background-position: 0;
-    }
-
-    .bg-ldark {
-        background-color: #01100e9c;
-    }
-
-    .alert>span {
-        font-weight: 500;
-    }
-
-    .a-center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .f-card {
-        background-color: #212529 !important;
-        border-radius: 10%;
-        width: 150px;
-        height: 150px;
-        margin: 10px;
-        background-size: cover !important;
-        background-position: center !important;
-        z-index: 2;
-    }
-
-    .data {
-        z-index: 2 !important;
-    }
-
-    .data i {
-        transform: rotate(45deg) !important;
-    }
-
-    .f-card:hover {
-        cursor: pointer !important;
-        box-shadow: 0px 0px 20px 10px rgba(255, 255, 255, 0.5);
-    }
-
-    .flip-card {
-        background-color: transparent;
-    }
-
-    .flip-card-inner {
-        z-index: 2;
-        position: relative;
-        transition: transform 0.5s;
-        transform-style: preserve-3d;
-    }
-
-    .back {
-        transform: rotateY(360deg);
-    }
-
-    .spacer {
-        height: 600px;
-    }
-
-    @media only screen and (max-width: 768px) {
-        .spacer {
-            height: 1530px;
-        }
-    }
-
-    #countdown {
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        display: inline-block;
-        transform: translate(-50%, -50%);
-        transition: 1s;
-        font-size: 0vw;
-        opacity: 100%;
-        color: #222;
-        z-index: 20 !important;
-    }
-
-    .rules {
-        color: #e1e3ffe5;
-        font-weight: 450;
-        text-align: center;
-    }
-
-    .rule-head {
-        font-weight: 600;
-        text-align: center;
-        border-radius: 10px;
-        padding: 1px 10px;
-        background: linear-gradient(to bottom right, #1a3852 100%, #780909 100%) !important;
-    }
-</style>
-
 <body>
-    <div class="wrapper" style="height: 100%;">
+    <div class="wrapper">
         <div id="count-wrapper"></div>
-        <div class="container" style="height: 100%;">
-            <div class="my-5">
+        <div class="x-container">
+            <div class="header">
                 <div style="height: 50px;"></div>
                 <div>
-                    <h2 class="text-light text-center display-5 my-4"><span
-                            style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important; font-weight: 500;">M</span>atchit
-                        Game</h2>
+                    <h2 class="heading"><span class="first-letter">M</span>atchit Game</h2>
                 </div>
-                <div id="rules" class="d-flex justify-content-center mb-5" style="z-index: 2;">
-                    <div class="col-lg-10 col-12 px-3">
-                        <h3 class="rules my-4 text-decoration-underline">Rules for the Tile Matching Game</h3>
-                        <p class="rules"><span class="rule-head">Objective</span> The goal of the game is to match all
-                            pairs of tiles on the grid.</p>
-                        <p class="rules"><span class="rule-head">Game Grid</span> You will be presented with a grid of
-                            face-down tiles. These tiles are randomly shuffled at the beginning of the game.</p>
-                        <p class="rules"><span class="rule-head">Matching Pairs</span> Tiles have matching pairs. To
-                            win, you must find and match all pairs. Matching pairs will be removed from the grid.</p>
-                        <p class="rules"><span class="rule-head">Memory</span> The game relies on your memory. Try to
-                            remember the positions and patterns on the tiles as you play to make successful matches.</p>
-                        <p class="rules"><span class="rule-head">Time Limit</span> Some variations of the game may have
-                            a time limit. Complete the matching within the specified time to win.</p>
-                        <p class="rules"><span class="rule-head">Scoring</span> Your score may be based on factors like
-                            the number of moves or time taken to complete the game. Strive for a high score!</p>
+                <div id="game" class="game-data data">
+                    <p><span id="moves">0</span> Moves</p>
+                    <div class="clock">
+                        <div class="a-center">
+                            <svg fill="#f8f9fa" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                <path
+                                    d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+                            </svg>
+                        </div>
+                        <div class="a-center">
+                            <span id="timer">00:00</span>
+                        </div>
+                    </div>
+                    <div class="a-center">
+                        <div onclick="location.reload()" class="reload">
+                            <svg fill="#f8f9fa" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                <path
+                                    d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H336c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v51.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V448c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H176c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
-                <div id="game" class="container d-flex justify-content-around data">
-                    <p class="text-center text-light h6"><span class="h6" id="moves">0</span> Moves</p>
-                    <p class="text-center text-light h6"><i class="bi bi-clock"></i> <span class="h6"
-                            id="timer">00:00</span></p>
-                    <p class="text-center text-light h6 data"><i onclick="location.reload()"
-                            class="bi bi-arrow-clockwise" style="cursor: pointer;"></i></p>
-                </div>
             </div>
-            <div id="box" class="row m-0 p-0">
+            <div id="box" class="grid">
             </div>
             <div class="spacer"></div>
         </div>
@@ -427,161 +72,6 @@
             <li></li>
         </ul>
     </div>
-    <script>
-        let n = 12 * 2
-
-        const shuffle = (a) => {
-            let tmp = null
-            for (let i = a.length - 1; i > 0; --i) {
-                let j = Math.floor(Math.random() * (i + 1))
-                tmp = a[i]
-                a[i] = a[j]
-                a[j] = tmp
-            }
-            return a
-        }
-
-        let count = 0
-        let prev = ''
-        let finals = 0
-        let timeInterval = null
-
-        function show(index) {
-
-            const span = document.getElementById('moves')
-            span.innerText = +span.innerText + 1
-
-            const flip = document.getElementById('flip-' + index)
-            const curName = flip.getAttribute('name')
-
-            ++count
-            if (count == 3) {
-                count = 1
-                hideAll()
-                prev = ''
-            }
-
-            if (curName == prev) {
-                prev = ''
-                const x = document.querySelectorAll(`div[name="${curName}"]`)
-                for (const element of x) {
-                    element.setAttribute('final', 'true')
-                }
-                finals += 2
-                if (finals == n && timeInterval) {
-                    clearInterval(timeInterval)
-                }
-            } else {
-                prev = curName
-            }
-
-            flip.style.transform = 'rotateY(180deg)'
-            setTimeout(() => {
-                flip.style.transform = 'none'
-            }, 400)
-            const back = document.getElementById('back-' + index)
-            back.style.display = 'none'
-            const front = document.getElementById('front-' + index)
-            front.style.display = 'block'
-
-        }
-
-        function hideAll() {
-            for (let i = 0; i < n; ++i) {
-                const flip = document.getElementById('flip-' + i)
-                const front = document.getElementById('front-' + i)
-                if (front.style.display == 'none' || flip.getAttribute('final') == 'true') {
-                    continue
-                }
-                flip.style.transform = 'rotateY(180deg)'
-                setTimeout(() => {
-                    flip.style.transform = 'none'
-                }, 500)
-                front.style.display = 'none'
-                const back = document.getElementById('back-' + i)
-                back.style.display = 'block'
-            }
-        }
-
-        function runTimer() {
-            const timer = document.getElementById('timer')
-            let timerCounter = 0
-            timeInterval = setInterval(() => {
-                ++timerCounter
-                const mins = (Math.floor(timerCounter / 60) + '').padStart(2, '0')
-                const secs = (Math.floor(timerCounter % 60) + '').padStart(2, '0')
-                timer.innerText = mins + ':' + secs
-            }, 1000)
-        }
-
-        function countDown() {
-            let counter = 3
-            let timer = setInterval(() => {
-                let countdown = document.getElementById('countdown')
-                if (countdown) {
-                    countdown.remove()
-                }
-                countdown = document.createElement('span')
-                countdown.setAttribute('id', 'countdown')
-                countdown.innerText = counter
-                const countWrapper = document.getElementById('count-wrapper')
-                countWrapper.appendChild(countdown)
-                setTimeout(() => {
-                    if (counter > -1) {
-                        if (window.innerWidth < 768) {
-                            countdown.style = 'font-size: 150vw; opacity: 0; z-index: 10;'
-                        } else {
-                            countdown.style = 'font-size: 50vw; opacity: 0; z-index: 10;'
-                        }
-                    }
-                }, 50)
-                counter--
-                if (counter == -1) {
-                    clearInterval(timer)
-                }
-            }, 1000)
-        }
-
-        function generate() {
-            const x = document.getElementById('box')
-            let innerDiv = ''
-            let images = new Array(n).fill(0)
-            for (let i = 0; i < n; ++i) {
-                let image = 'image_' + Math.floor(i / 2 + 1) + '.png'
-                images[i] = image
-            }
-            images = shuffle(images)
-            for (let i = 0; i < n; ++i) {
-                innerDiv += `
-                <div class="flip-card col-lg-2 col-md-3 col-6 a-center">
-                    <div class="flip-card-inner" id="flip-${i}" name="${images[i]}" final="false">
-                        <div class="f-card back bg-dark" id="back-${i}" style="display: none;" onclick="show(${i})"> 
-                        </div>
-                        <div class="f-card front" id="front-${i}" style="background-image: url('./images/${images[i]}');">
-                        </div>
-                    </div>
-                </div>
-                `
-            }
-            x.innerHTML = innerDiv
-
-            location.href = "#rules"
-            setTimeout(() => {
-                setTimeout(() => {
-                    location.href = "#game"
-                    countDown()
-                    setTimeout(() => {
-                        hideAll()
-                        runTimer()
-                    }, 9000)
-                }, 1000)
-            }, 5000)
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            generate()
-        })
-    </script>
 </body>
 
 </html>
