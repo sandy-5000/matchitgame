@@ -116,6 +116,7 @@ function countDown() {
 function generate() {
     const x = document.getElementById('box')
     let innerDiv = ''
+    const imagePath = '/images/'
     let images = new Array(n).fill(0)
     for (let i = 0; i < n; ++i) {
         let image = 'image_' + Math.floor(i / 2 + 1) + '.png'
@@ -128,7 +129,7 @@ function generate() {
             <div class="flip-card-inner" id="flip-${i}" name="${images[i]}" final="false">
                 <div class="f-card back bg-dark" id="back-${i}" style="display: none;" onclick="show(${i})"> 
                 </div>
-                <div class="f-card front" id="front-${i}" style="background-image: url('./images/${images[i]}');">
+                <div class="f-card front" id="front-${i}" style="background-image: url('${imagePath}${images[i]}');">
                 </div>
             </div>
         </div>
