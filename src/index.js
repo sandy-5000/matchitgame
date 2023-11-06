@@ -16,7 +16,11 @@ let prev = ''
 let finals = 0
 let timeInterval = null
 
-function show(index) {
+const show = (index) => {
+
+    if (index == null) {
+        return
+    }
 
     const span = document.getElementById('moves')
     span.innerText = +span.innerText + 1
@@ -56,7 +60,7 @@ function show(index) {
 
 }
 
-function hideAll() {
+const hideAll = () => {
     for (let i = 0; i < n; ++i) {
         const flip = document.getElementById('flip-' + i)
         const front = document.getElementById('front-' + i)
@@ -73,7 +77,7 @@ function hideAll() {
     }
 }
 
-function runTimer() {
+const runTimer = () => {
     const timer = document.getElementById('timer')
     let timerCounter = 0
     timeInterval = setInterval(() => {
@@ -84,7 +88,7 @@ function runTimer() {
     }, 1000)
 }
 
-function countDown() {
+const countDown = () => {
     let counter = 2
     let msgs = ['', 'Start', 'Ready']
     let timer = setInterval(() => {
@@ -113,7 +117,7 @@ function countDown() {
     }, 1000)
 }
 
-function generate() {
+const generate = () => {
     const x = document.getElementById('box')
     let innerDiv = ''
     const imagePath = '/images/'
@@ -127,7 +131,7 @@ function generate() {
         innerDiv += `
         <div class="flip-card a-center">
             <div class="flip-card-inner" id="flip-${i}" name="${images[i]}" final="false">
-                <div class="f-card back bg-dark" id="back-${i}" style="display: none;" onclick="show(${i})"> 
+                <div class="f-card back bg-dark" id="back-${i}" style="display: none;" onclick="show(${i})">
                 </div>
                 <div class="f-card front" id="front-${i}" style="background-image: url('${imagePath}${images[i]}');">
                 </div>
@@ -147,5 +151,6 @@ function generate() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    window.show = show
     generate()
 })
