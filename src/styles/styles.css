@@ -46,7 +46,7 @@ body :-ms-input-placeholder {
     position: absolute;
     left: 0;
     width: 100%;
-    height: auto;
+    height: 150%;
     min-height: 400px;
     overflow: scroll;
 }
